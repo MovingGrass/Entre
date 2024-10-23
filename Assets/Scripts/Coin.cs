@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour, IPickable
 {
     public void PickUp()
     {
-        Debug.Log("Added 1 coin");
+        GameManager.Instance.score++;
         Destroy(gameObject);
     }
 }
