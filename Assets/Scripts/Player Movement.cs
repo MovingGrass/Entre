@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private bool isGrounded;
     private bool isFacingRight = true;
+
+    private Scene scene;
 
     void Start()
     {
@@ -35,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        if(transform.position.y < -100 || Input.GetKeyDown(KeyCode.Escape))
+        {
+            scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
         }
     }
 
